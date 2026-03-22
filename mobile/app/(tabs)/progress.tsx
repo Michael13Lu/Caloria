@@ -22,12 +22,12 @@ export default function ProgressScreen() {
     formState: { errors, isSubmitting },
   } = useForm<WeightLogFormData>({
     resolver: zodResolver(weightLogSchema),
-    defaultValues: { date: getTodayDate(), note: null },
+    defaultValues: { date: getTodayDate(), note: undefined },
   });
 
   const onSubmit = async (data: WeightLogFormData) => {
     await addWeight.mutateAsync(data);
-    reset({ date: getTodayDate(), note: null });
+    reset({ date: getTodayDate(), note: undefined });
   };
 
   const latestWeight = logs[0]?.weight_kg;
